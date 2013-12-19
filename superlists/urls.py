@@ -7,6 +7,9 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     # Examples:
      url(r'^$', 'lists.views.home_page', name='home'),
+     url(r'^lists/the-only-list-in-the-world/$', 'lists.views.view_list',
+         name='view_list'
+     ),
     # url(r'^superlists/', include('superlists.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
