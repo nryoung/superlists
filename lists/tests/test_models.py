@@ -7,6 +7,7 @@ Replace this with more appropriate tests for your application.
 
 from django.test import TestCase
 from lists.models import Item, List
+from django.core.exceptions import ValidationError
 
 
 class ListAndItemModelsTest(TestCase):
@@ -36,3 +37,9 @@ class ListAndItemModelsTest(TestCase):
         self.assertEqual(first_saved_item.list, list_)
         self.assertEqual(second_saved_item.text, 'Item the second')
         self.assertEqual(second_saved_item.list, list_)
+
+    def test_cannot_save_empty_list_items(self):
+        list1 = List.objects.create()
+        item = Item(list=list1, text='')
+        with self.assertRaises(ValidationError):
+            item.save()
