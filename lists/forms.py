@@ -19,3 +19,7 @@ class ItemForm(forms.models.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['text'].error_messages['required'] = EMPTY_LIST_ERROR
+
+    def save(self, for_list):
+        self.instance.list = for_list
+        return super().save()
